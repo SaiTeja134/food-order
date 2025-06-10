@@ -84,9 +84,10 @@ npm start
 - `ng build` — Build Angular app
 - `ng test` — Run unit tests
 
-## License
-This project is licensed under the ISC License.
+## 📄 License
+**This project is licensed under the MIT License.**
 
----
-
-*For more details, see the `angularapp/README.md` for frontend-specific commands and documentation.*
+## 👨‍💻 Author
+**Sai Teja**  
+**GitHub:** [SaiTeja134](https://github.com/SaiTeja134)  
+**Email:** saiteja.gangavaram09@gmail.com
