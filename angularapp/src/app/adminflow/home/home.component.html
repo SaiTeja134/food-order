@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="card dashboard-card p-4">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-2">
+                <div class="card p-3 dashboad-content-card"
+                    style="background-image: linear-gradient(278deg,#dc3586 0%,#000000 120%); color: white;padding: 10px 30px;">
+                    <div class="card-title">
+                        <h4>Total Amount</h4>
+                    </div>
+                    <div>
+                        <h1 style="font-size: 40px;font-weight: 500;">₹ {{ getPaymentCount }}/-</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-2">
+                <div class="card p-3 dashboad-content-card"
+                    style="background-image: linear-gradient(90deg,rgba(239,96,162,1) 15%,rgba(243,155,148,1) 84%); color: white;padding: 10px 30px;">
+                    <div class="card-title">
+                        <h4>Total No.of Users</h4>
+                    </div>
+                    <div>
+                        <h1 style="font-size: 40px;font-weight: 500;">{{ totalUsers }}</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-2">
+                <div class="card p-3 dashboad-content-card"
+                    style="background-image: linear-gradient(180deg,rgba(86,119,192,1) 0%,rgba(112,203,233,1) 100%); color: white;padding: 10px 30px;">
+                    <div class="card-title">
+                        <h4>Total No. of Dishes</h4>
+                    </div>
+                    <div>
+                        <h1 style="font-size: 40px;font-weight: 500;">{{ totalMenuItemsCount }}</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-2">
+                <div class="card p-3 dashboad-content-card"
+                    style="background-image: linear-gradient(141deg,rgba(5,105,140,1) 0%, rgba(4,63,91,1) 100%); color: white;padding: 10px 30px;">
+                    <div class="card-title">
+                        <h4>Total No. of Tables</h4>
+                    </div>
+                    <div>
+                        <h1 style="font-size: 40px;font-weight: 500;">{{ totalTablesCount }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

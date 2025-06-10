@@ -1,0 +1,83 @@
+<div class="container-fluid h-100">
+    <div class="card h-100">
+        <div class="row h-100">
+            <div class="col-md-6 col-lg-7  col-xl-7 d-none d-md-block">
+                <img src="../../../assets/login.jpg" class="w-100 h-100">
+            </div>
+            <div class="col-md-6 col-lg-5 col-xl-5">
+                <div class="login">
+                    <div class="loginform">
+                        <div class="logo">
+                            <img src="../../../assets/logo.png" class="img-fluid" alt="logo">
+                        </div>
+                        <div class="title mt-4">
+                            <h1 class="mb-1">Login to Your Account</h1>
+                            <small>Welcome back! Select method to login</small>
+                        </div>
+                        <div class="form">
+                            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                                <div class="form-group mt-3">
+                                    <label class="d-block">Email <sup class="text-danger">*</sup></label>
+                                    <div class="position-relative">
+                                        <input class="input position-relative" type="email"
+                                            placeholder="example@gmail.com" formControlName="email">
+                                        <div class="icon">
+                                            <i class="fa fa-envelope mx-1 me-2" aria-hidden="true"></i>
+                                            <span class="line"></span>
+                                        </div>
+                                        <div
+                                            *ngIf="(loginFormControl.email.touched || submitted) && loginFormControl.email.errors?.['required']">
+                                            <p class="text-danger">Email Id is required</p>
+                                        </div>
+                                        <p *ngIf="loginFormControl.email.touched && (loginFormControl.email.errors?.['pattern'] || loginFormControl.email.errors?.['email'])"
+                                            class="text-danger">This is invalid email address!</p>
+                                    </div>
+
+
+                                </div>
+                                <div class="form-group mt-3">
+                                    <label class="d-block">Password <sup class="text-danger">*</sup></label>
+                                    <div class="position-relative">
+                                        <input class="input" type="{{ isPasswordVisible ? 'text' : 'password' }}"
+                                            placeholder="********" formControlName="password">
+                                        <div class="icon">
+                                            <img src="../../../assets/passwordicon.svg" class="pe-2" alt="">
+                                            <i class="fa fa-key me-2" aria-hidden="true"></i>
+                                            <span class="line"></span>
+                                        </div>
+                                        <div class="passwordicon" (click)="togglePasswordVisibility()">
+                                            <i class="fa" [ngClass]="isPasswordVisible ? 'fa fa-eye':'fa fa-eye-slash'"
+                                                aria-hidden="true"></i>
+                                        </div>
+                                        <div
+                                            *ngIf="(loginFormControl.password.touched || submitted) && loginFormControl.password.errors?.['required']">
+                                            <p class="text-danger">Password is required</p>
+                                        </div>
+                                        <p *ngIf="loginFormControl.password.touched && loginFormControl.password.errors?.['pattern']"
+                                            class="text-danger">This is invalid password!</p>
+                                    </div>
+                                </div>
+                                <div class="form-group mt-3 d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <a routerLink="/forgotpassword">Forgot Password?</a>
+                                    </div>
+
+                                </div>
+                                <div class="form-group text-center mt-3">
+                                    <button type="submit" class="btn submitbtn"
+                                        [disabled]="loginForm.invalid">Login</button>
+                                </div>
+                                <div class="form-group text-center mt-4">
+                                    <small>Don't have an account? <a routerLink="/register">Create an account</a>
+                                    </small>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

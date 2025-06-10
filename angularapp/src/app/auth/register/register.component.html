@@ -1,0 +1,103 @@
+<div class="container-fluid h-100">
+    <div class="card h-100">
+      <div class="row h-100">
+        <div class="col-md-6 col-lg-7 col-xl-8">
+          <div class="login">
+            <div class="loginform">
+              <div class="logo">
+                <img style="height: 100px;width: 100px; border-radius: 10px;" src="../../../assets/logo.png">
+              </div>
+              <div class="title mt-4">
+                <h1 class="mb-1">Create Account</h1>
+                <small>Lorem ipsum dolor sit amet consectetur adipisicing elit.</small>
+              </div>
+              <div class="form">
+                <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+                  <div class="form-group mt-3">
+                    <label class="d-block">Full Name <sup class="text-danger">*</sup></label>
+                    <div class="position-relative">
+                    <input class="input" type="text" placeholder="Name" name="name" #name="ngModel" ngModel  required minlength="3"  pattern="^[a-zA-Z][a-zA-Z ]*$">
+                    <div class="icon">
+                      <i class="fa-solid fa-user mx-1 me-2"></i>
+                      <span class="line"></span>
+                    </div>
+  
+                    <div  *ngIf="name?.invalid && name?.touched">
+                      <div class="text-danger" *ngIf="name.errors?.['required']">Name is required.</div>
+                      <div class="text-danger" *ngIf="name.errors?.['minlength']">Name should be at least 3 characters long.</div>
+                      <div class="text-danger" *ngIf="name.errors?.['pattern']">Please enter valid name</div>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="form-group mt-3">
+                    <label class="d-block">Email <sup class="text-danger">*</sup></label>
+                    <div class="position-relative">
+                    <input class="input" type="email"  placeholder="example@gmail.com" name="email" #email="ngModel"  ngModel  required email pattern="^[a-zA-Z0-9._]+@[a-zA-Z0-9.]+\.[a-zA-Z]{2,4}$">
+                    <div class="icon">
+                        <i class="fa fa-envelope mx-1 me-2" aria-hidden="true"></i>
+                      <span class="line"></span>
+                    </div>
+                    <div *ngIf="email?.invalid && email?.touched ">
+                      <div class="text-danger" *ngIf="email.errors?.['required']">email is required.</div>
+                      <div class="text-danger" *ngIf="email.errors?.['minlength']">email should be at least 3 characters long.</div>
+                      <div class="text-danger" *ngIf="email.errors?.['pattern']">Please enter valid email.</div>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="form-group mt-3">
+                    <label class="d-block">Phone Number <sup class="text-danger">*</sup></label>
+                    <div class="position-relative">
+                    <input class="input" type="text" placeholder="9654645671" name="phoneNo" #phoneNo="ngModel" ngModel  required minlength="10">
+                    <div class="icon">
+                      <i class="fa fa-phone pe-2" aria-hidden="true"></i>
+                      <span class="line"></span>
+                    </div>
+                    <div *ngIf="phoneNo?.invalid && phoneNo?.touched ">
+                      <div class="text-danger" *ngIf="phoneNo.errors?.['required']">phoneNo is required.</div>
+                      <div class="text-danger" *ngIf="phoneNo.errors?.['minlength']">phoneNo should be at least 10 characters long.</div>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="form-group mt-3">
+                    <label class="d-block">Password <sup class="text-danger">*</sup></label>
+                    <div class="position-relative">
+                    <input class="input" type="{{ isPasswordVisible ? 'text' : 'password' }}" placeholder="********" name="password" #password="ngModel" ngModel  required pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])([a-zA-Z0-9@$!%*?&]{8,})$">
+                    <div class="icon">
+                      <i class="fa fa-key me-2" aria-hidden="true"></i>
+                      <span class="line"></span>
+                    </div>
+                    <div class="passwordicon">
+                      <i (click)="togglePasswordVisibility()" class="fa" [ngClass]="isPasswordVisible ? 'fa fa-eye':'fa fa-eye-slash'" aria-hidden="true"></i>
+                    </div>
+                    <div *ngIf="password?.invalid && password?.touched ">
+                      <div class="text-danger" *ngIf="password.errors?.['required']">password is required.</div>
+                      <div class="text-danger" *ngIf="password.errors?.['pattern']">Password should be at least 8 characters long, and it must include at least one special character, one uppercase letter, and one number</div>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="form-group radiobtn mt-3">
+                    <label class="d-block">Role <sup class="text-danger">*</sup></label>
+                    <input type="radio" value="user" name="role"  #role="ngModel" ngModel required> <span>User</span> &nbsp;&nbsp;
+                    <input type="radio" value="admin" name="role"  #role="ngModel" ngModel required> <span>Admin</span>
+                    <!-- <div class="text-danger" *ngIf="role.errors?.required" class="text-danger">Role is required.</div> -->
+  
+                  </div>
+                  <div class="form-group text-center mt-3">
+                    <button type="submit" class="btn submitbtn" [disabled]="!registerForm.form.valid">Register</button>
+                  </div>
+                  <div class="form-group text-center mt-4">
+                    <small>Already have an account? <a routerLink="/login">Sign in</a> </small>
+                  </div>
+                </form>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-5  col-xl-4">
+          <img src="../../../assets/restaurant.jpg" class="w-100 h-100">
+        </div>
+      </div>
+    </div>
+  
+  </div>

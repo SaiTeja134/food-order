@@ -1,0 +1,165 @@
+<div class="listmenu">
+    <div class="container-fluid">
+      <div class="card tablecard pt-3 pb-3" style="padding: 0px 10px 0px 10px;">
+        <div class="d-flex align-items-center justify-content-between p-2 ps-4 pe-4">
+          <div>
+            <h2 class="fw-bold mb-0">Menu Items</h2>
+          </div>
+          <div>
+            <button type="button" class="btn additem" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <i class="fa fa-plus" aria-hidden="true"></i> Add Item
+            </button>
+          </div>
+        </div>
+  
+        <div class="table mt-1">
+          <div class="dashboard-table">
+          <table>
+            <thead>
+              <tr>
+                <th >Item Name &nbsp;<i class="fa fa-sort" (click)="sortBy('name')"></i></th>
+                <th>Category <i class="fa fa-sort" (click)="sortBy('category')"></i></th>
+                <th>Price <i class="fa fa-sort" (click)="sortBy('price')"></i></th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>  
+              <tr *ngFor="let tableData of getCurrentPageDataSorted();let i = index">
+                <td>{{tableData.name}}</td>
+                <td>{{tableData.category}}</td>
+                <td>{{tableData.price}}</td>
+                <td> <span [class]="tableData.status==='unavailable'?'text-danger':'text-dark'" class="d-flex align-items-center justify-content-start"><div class="toggle">
+                  <label class="switch">
+                    <input type="checkbox" 
+                    id="checkAvailability">
+                    <!-- (change)="handleAvailablity(tableData)"  -->
+                    <span class="round"[ngClass]="tableData.isSelected?'slider':'sliderNotAvail'" ></span>
+                  </label>
+                </div>&nbsp;{{tableData.status| titlecase}}</span> </td>
+  
+              </tr>  
+              <tr *ngIf="tableitem.length<=0">
+                <td colspan="4" class="text-center nodata"> No data found</td>
+              </tr>
+            </tbody>  
+          </table>
+          <div class="pagination">  
+            <div class="pagination">
+              <button (click)="setPage(currentPage - 1)" [disabled]="currentPage === 1">
+                <i class="fa fa-chevron-left"></i> Previous
+              </button>
+              <button *ngFor="let page of getPageButtons()" (click)="setPage(page)" [class.active]="page === currentPage">
+                {{ page }}
+              </button>
+              <button (click)="setPage(currentPage + 1)" [disabled]="currentPage >= totalPages">
+                Next <i class="fa fa-chevron-right"></i>
+              </button>
+            </div>  
+          </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  
+<div class="modal fade" id="exampleModal" #myModal tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fw-bold fs-5 mb-0" id="exampleModalLabel">Add New Item</h1>
+        <button type="button" data-bs-dismiss="modal" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form">
+          <form [formGroup]="addMenuForm" (ngSubmit)="handleItemAdd()">
+            <div class="container-fluid p-2 modal-body">
+              <label>Images List <sup class="text-danger">*</sup></label>
+              <div class="images position-relative d-flex align-items-center mt-2 mb-2 justify-content-start">
+                @for (item of foodImg; track item.id) {
+                <div class="p-3 position-relative foodimg">
+                  <img [src]="item.path" alt="Food image" class="dishImg w-100" (click)="selectItem(item)">
+                  <input type="text" style="visibility: hidden;" [value]="item.path" [formControlName]="item.id.toString()">
+                  <i [ngClass]="{'d-block': item.selected, 'd-none': !item.selected}" 
+                     class="fa fa-check-circle check-icon" aria-hidden="true" style="font-size: 24px;"></i>
+                </div>
+                }
+              </div>
+              @if (sumbit && addMenuForm.get('selectedImages')?.hasError('noImagesSelected')) {
+              <div class="imageerror">
+                <small class="text-danger">Select at least one image.</small>
+              </div>
+              }
+
+              <div class="row">
+                <div class="form-group">
+                  <label class="d-block fw-medium">Item Name <sup class="text-danger">*</sup></label>
+                  <input placeholder="Item Name" formControlName="item_name">
+                  @if (sumbit && addMenuForm.controls['item_name'].touched && addMenuForm.controls['item_name'].errors?.['required']) {
+                  <div class="mt-2 text-danger">Item Name is required.</div>
+                  }
+                  @if (sumbit && addMenuForm.controls['item_name'].touched && addMenuForm.controls['item_name'].errors?.['pattern']) {
+                  <div class="mt-2 text-danger">Item Name is invalid.</div>
+                  }
+                </div>
+
+                <div class="form-group">
+                  <label class="d-block fw-medium">Item Category <sup class="text-danger">*</sup></label>
+                  <select formControlName="item_category">
+                    <option value="starter">Starter</option>
+                    <option value="main course">Main Course</option>
+                    <option value="desserts">Desserts</option>
+                    <option value="beverage">Beverage</option>
+                  </select>
+                  @if (sumbit && addMenuForm.controls['item_category'].touched && addMenuForm.controls['item_category'].errors?.['required']) {
+                  <div class="mt-2 text-danger">Item Category is required.</div>
+                  }
+                </div>
+
+                <div class="form-group">
+                  <label class="d-block fw-medium">Sub Category <sup class="text-danger">*</sup></label>
+                  <select formControlName="sub_category">
+                    <option value="veg">Veg</option>
+                    <option value="nonveg">Non-Veg</option>
+                  </select>
+                  @if (sumbit && addMenuForm.controls['sub_category'].touched && addMenuForm.controls['sub_category'].errors?.['required']) {
+                  <div class="mt-2 text-danger">Sub-Category is required.</div>
+                  }
+                </div>
+
+                <div class="form-group">
+                  <label class="d-block fw-medium">Description <sup class="text-danger">*</sup></label>
+                  <input placeholder="Description" type="text" formControlName="description">
+                  @if (sumbit && addMenuForm.controls['description'].touched && addMenuForm.controls['description'].errors?.['required']) {
+                  <div class="mt-2 text-danger">Description is required.</div>
+                  }
+                  @if (sumbit && addMenuForm.controls['description'].touched && addMenuForm.controls['description'].errors?.['maxlength']) {
+                  <div class="mt-2 text-danger">Description should be less than 100 characters.</div>
+                  }
+                </div>
+
+                <div class="form-group">
+                  <label class="d-block fw-medium">Price <sup class="text-danger">*</sup></label>
+                  <input placeholder="Price" type="number" formControlName="price">
+                  @if (sumbit && addMenuForm.controls['price'].touched && addMenuForm.controls['price'].errors?.['required']) {
+                  <div class="mt-2 text-danger">Price is required.</div>
+                  }
+                  @if (sumbit && addMenuForm.controls['price'].touched && addMenuForm.controls['price'].errors?.['pattern']) {
+                  <div class="mt-2 text-danger">Price must be a valid number.</div>
+                  }
+                </div>
+              </div>
+            </div>
+
+            <div class="modal-footer d-flex justify-content-center">
+              <div class="w-75">
+                <button type="submit" data-bs-dismiss="modal" class="submitbtn btn" [disabled]="addMenuForm.invalid" id="submitbtn">Add</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

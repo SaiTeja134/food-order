@@ -1,0 +1,50 @@
+
+
+
+.menuloader{
+    position: relative;
+    z-index: 2;
+  }
+  .card {
+    background-color: rgba(159, 159, 159, 0.39);
+    border-radius: 17px;
+    border: 1px solid white;
+    color: #333;
+    font-family: sans-serif;
+    line-height: 1.5;
+    padding: 1rem 2rem 2rem;
+  }
+  .title h1{
+    font-size: 2rem;
+    font-weight: 500;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  .menuspinner{
+    filter: drop-shadow(0px 0px 10px white);
+  }
+  .submitbtn{
+    background: #E6AA0A;
+    border: none;
+    border-radius: 6px;
+    padding: 0.8rem 5rem;
+    font-weight: bold;
+    margin-top: 14px;
+  }
+  textarea{
+    border-radius: 10px;
+    height: 140px;
+    overflow-y: auto;
+    padding: 10px 20px;
+  }
+  :host::ng-deep.mat-radio-outer-circle {
+    border-color: white;
+  }
+  :host::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #E6AA0A;
+    border-width: 3px;
+  }
+  :host::ng-deep.mat-radio-button.mat-accent .mat-radio-inner-circle{
+    background-color: #E6AA0A;
+  }
+  

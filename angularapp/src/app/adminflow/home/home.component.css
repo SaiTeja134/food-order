@@ -1,0 +1,8 @@
+.dashboard-card{
+    box-shadow: 0px 0px 11px lightgray;
+    border: none;
+}
+
+.dashboard-content-card{
+    padding-bottom: 2rem !important;
+}

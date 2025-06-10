@@ -1,0 +1,46 @@
+<div class="navbar-header">
+    <div class="container-fluid pt-3">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary d-flex align-items-center justify-content-between">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><img style="height: 100px; width: 100px; border-radius: 10px;" src="../../assets/logo.png" alt=""></a>
+                <div class="" id="navbarSupportedContent">
+                    <div class="d-flex align-items-center">
+                        <button class="btn " type="submit" (click)="dropdownOpen()">
+                            <img src="../../assets/user.png" [title]="email ? 'User Details' : 'login'" alt=""
+                                class="w-100 profile">
+                        </button>
+                    </div>
+                    <ng-container>
+                        <div class="box arrow-top" *ngIf="menuopen">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <img src="../../assets/user.png" alt="" class="w-100 profile">
+                                </div>
+                                <div class="ms-3">
+                                    <h2 class="mb-0" style="line-height: 1;">{{name?.name}}</h2>
+                                    <small>{{email}}</small>
+                                </div>
+                            </div>
+                            <!-- <div class="d-flex mt-3">
+                    <label>Table No. :</label>
+                    <strong class="d-inline-block ms-2"> {{tableno}}</strong>
+                  </div> -->
+                            <div class="d-flex">
+                                <label>Login date & time :</label>
+                                <strong class="d-inline-block ms-2">{{date}}</strong>
+                                <strong class="d-inline-block ms-2">{{time}}</strong>
+                            </div>
+                            <div class="text-end mt-4">
+                                <button class="logoutbtn btn-block btn-danger"
+                                    (click)="logOut()">{{submitBtnName}}</button>
+                            </div>
+                        </div>
+                    </ng-container>
+
+
+                </div>
+            </div>
+        </nav>
+    </div>
+    <router-outlet></router-outlet>
+</div>

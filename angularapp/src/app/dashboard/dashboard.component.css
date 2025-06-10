@@ -1,0 +1,62 @@
+.navbar{
+    --bs-bg-opacity: 1;
+    background-color: white !important;
+    border-radius: 5px;
+    margin-bottom: 0px;
+    box-shadow: 0px 1px 7px lightgray;
+    position: sticky;
+    top: 10px;
+    z-index: 1;
+    width: 100%;
+  }
+  .profile{
+    background-color: #236BAE;
+    border-radius: 50%;
+    color: white;
+    font: normal normal 600 14px/15px Lexend;
+    width: 50px;
+    height: 50px;
+  }
+  .signin{
+    font-size: 14px;
+    padding-right: 30px;
+  }
+  .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+    color: var(--bs-navbar-active-color);
+    font-weight: bold;
+  }
+  .box {
+    position: absolute;
+    right: 0px;
+    width: 330px;
+    margin: 3px 0px;
+    z-index: 1;
+    border-radius: 10px;
+    color: black;
+    background: white;
+    box-shadow: 0px 0px 3px lightgray;
+    padding: 20px;
+    height: auto;
+  }
+  
+  
+  
+  .box.arrow-top:after {
+    content: " ";
+    position: absolute;
+    right: 30px;
+    top: -15px;
+    border-top: none;
+    border-right: 15px solid transparent;
+    border-left: 15px solid transparent;
+    border-bottom: 15px solid #f6f6f6;
+  }
+  .logoutbtn{
+    color: #c72871;
+      border: none;
+      background: #fbe0eb;
+      border-radius: 8px;
+      padding: 8px 15px;
+      font-weight: 500;
+      letter-spacing: 1px;
+  }

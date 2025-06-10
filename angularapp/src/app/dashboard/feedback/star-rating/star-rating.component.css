@@ -1,0 +1,9 @@
+.rating-container{
+    display: flex;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+.star{
+    transition: color 0.2s ease;
+}

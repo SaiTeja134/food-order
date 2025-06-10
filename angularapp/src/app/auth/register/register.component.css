@@ -1,0 +1,99 @@
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+  }
+  .container-fluid{
+    position: fixed;
+  }
+  .login{
+    background-color: #F8F7FC;
+    height: calc(100vh - 0px);
+    padding: 50px 30px 0px;
+    position: relative;
+    overflow-y: auto;
+  }
+  .title h1{
+    color: #236BAE;
+    font-size: 32px;
+    font-weight: 500;
+  }
+  .title small{
+    font-weight: 500;
+  }
+  .form{
+    padding: 1rem 4rem 1rem;
+  
+  }
+  .input{
+    width: 100%;
+    border: 1px solid #E3E3E3;
+    border-radius: 6px;
+    padding: 10px 50px;
+  }
+  .submitbtn{
+    background: #236BAE;
+      width: 100%;
+      color: white;
+      padding: 8px 30px;
+  }
+  input::placeholder{
+    color: #ACACAC;
+  }
+  label{
+    font-weight: 500;
+    padding-left: 8px;
+    margin-bottom: 8px;
+  }
+  .icon{
+    position: absolute;
+    top: 11px;
+    left: 10px;
+  }
+  .icon .line::before{
+    content: "";
+    position: absolute;
+    background-color: #236BAE;
+    width: 1.5px;
+    height: 26px;
+    top: -3px;
+    opacity: 0.6;
+  }
+  .passwordicon{
+    position: absolute;
+    top: 11px;
+    right: 12px;
+    cursor: pointer;
+  }
+  .radiobtn input{
+    top: 2px;
+    position: relative;
+    margin-right: 4px;
+  }
+  .fa-phone {
+    content: "\f095";
+    color: #3f79af;
+  }
+  @media only screen and (min-width:1640px){
+    .loginform{
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      padding: 10px 50px;
+    }
+  }
+  @media only screen and (max-width:992px){
+    .form{
+      padding: 3rem 1rem 1rem;
+  
+    }
+  }
+  
+  @media only screen and (max-width:375px){
+    .login{
+      padding: 50px 15px;
+  }
+  }

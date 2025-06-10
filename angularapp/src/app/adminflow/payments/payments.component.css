@@ -1,0 +1,104 @@
+
+table {
+    width: 100%;
+}
+
+.additem {
+    background-color: #E6AA0A;
+    color: black;
+}
+
+tr {
+    border-bottom: 1px solid lightgray;
+}
+
+td {
+    border-color: rgba(0, 0, 0, 0.5);
+    border-style: solid;
+    border-width: 0;
+    padding: 15px 8px;
+    width: 25%;
+}
+
+th {
+    padding: 15px 8px;
+    width: 25%;
+    white-space: nowrap;
+}
+
+h2 {
+    letter-spacing: 2px;
+}
+
+:host::ng-deep.mat-form-field-infix {
+    border-top: 0px;
+}
+
+.card {
+    border: none;
+    box-shadow: 0px 0px 4px lightgray;
+}
+
+.dashboard-table {
+    overflow: auto;
+}
+
+:host::ng-deep.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
+.mat-form-field-appearance-outline.mat-form-field-can-float .mat-input-server:focus+.mat-form-field-label-wrapper .mat-form-field-label {
+    transform: translateY(-0.8em) scale(0.75);
+    width: 133.3333333333%;
+}
+
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 5px;
+}
+
+/* Pagination button styles */
+.pagination button {
+    background-color: #E6AA0A;
+    /* Default button background color */
+    color: #fff;
+    /* Default button text color */
+    border: none;
+    padding: 5px 10px;
+    margin: 0 2px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover effect */
+.pagination button:hover {
+    background-color: #0056b3;
+    /* Button background color on hover */
+}
+
+/* Active page button */
+.pagination button.active {
+    background-color: #0056b3;
+    /* Button background color for the active page */
+    font-weight: bold;
+    /* Make the active button text bold */
+}
+
+/* Disabled buttons */
+.pagination button.disabled {
+    background-color: #ccc;
+    /* Disabled button background color */
+    cursor: not-allowed;
+    color: #888;
+    /* Disabled button text color */
+}
+
+.dashboard-table::-webkit-scrollbar {
+    width: 1px !important;
+    height: 5px !important;
+}
+
+.dashboard-table::-webkit-scrollbar-thumb {
+    background-color: #236BAE;
+    border-radius: 10px;
+}

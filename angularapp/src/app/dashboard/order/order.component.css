@@ -1,0 +1,220 @@
+
+:host::ng-deep.mat-ink-bar{
+    height: 7px !important;
+    margin-left: 2.4em !important;
+    width: 99px !important;
+    background-color: #236BAE;
+    border-radius: 7px 7px 0px 0px;
+}
+:host::ng-deep.mat-tab-labels{
+ justify-content: center;
+}
+
+:host::ng-deep .mat-tab-label-active>.mat-tab-label-content{
+    color: #236BAE !important;
+    opacity: 1;
+
+}
+.tabs .nav-item{
+  width: 20%;
+}
+.tabs .nav-link {
+  color: #444444  !important;
+}
+.tabs .nav-link.active{
+  background-color: transparent;
+    color: #236BAE !important;
+}
+.activdeline{
+  display: none;
+  border-bottom: 10px solid #236BAE;
+  background-color: #236BAE;
+  position: relative;
+  /* height: 26px; */
+  margin-left: 0px;
+  margin-top: 7px;
+  border-radius: 10px 10px 0px 0px;
+}
+ .nav-link.active .activdeline{
+ display: block;
+}
+.tabs{
+  border-bottom: 1px solid lightgray;
+  height: 45px;
+  justify-content: center;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+}
+:host::ng-deep #mat-tab-label-0-1.mat-tab-label-active .mat-ink-bar{
+    height: 7px !important;
+    left: 2.4em !important;
+        width: 99px !important;
+        background-color: #236BAE;
+        border-radius: 7px 7px 0px 0px;
+}
+
+.category-img{
+    height: 60px;
+    width: 60px;
+    padding: 0px;
+    cursor: pointer;
+}
+:host::ng-deep .mat-tab-body-content {
+    overflow-x: hidden;
+}
+.category-col{
+    border-right: 1px solid #3B3B3B;
+    height: calc(65vh - 2px);
+}
+.order-card,.items-card{
+    box-shadow: 0 0 4px #c8c8c8 !important;
+    border: none !important;
+}
+.items-img{
+    width: 70px;
+}
+.item-discription,.item-price{
+    font-size: 12px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical
+}
+.item-price{
+    font-weight: bold; color: #236BAE;
+}
+
+.input-group{
+    visibility: none;
+}
+.items-card:hover{
+    cursor: pointer;
+    background-color: #236BAE;
+    color: white;
+    span{
+        color: white;
+    }
+    .items-img{
+        display: none;
+    }
+    .item-count{
+        display: block;
+        width: 70%;
+
+
+    }
+    .input-group-text{
+        border: none;
+        color: black;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 0px;
+        background-color: white;
+    }
+    .input-group{
+    border: none;
+    border-radius: 30px;
+    background: white;
+    overflow: hidden;
+    margin-bottom: 20px !important;
+    margin-top: 14px !important;
+
+    }
+    .input-text-field{
+        border: none;
+        text-align: center;
+    }
+}
+.isSelected{
+    opacity: 1;
+    background: aliceblue;
+    padding: 4px;
+    border-radius: 5px;
+}
+
+.itemListDiv::-webkit-scrollbar{
+    width: 5px;
+}
+.itemListDiv::-webkit-scrollbar-thumb{
+    background-color: #236BAE;
+    border-radius: 16px;
+}
+.itemListDiv::-webkit-scrollbar-track{
+    background-color: white;
+    border-radius: 16px;
+
+}
+.itemListDiv{
+    height: calc(75vh - 10px) !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.flip-card {
+  background-color: transparent;
+  width: 100%;
+  height: 230px;
+  border: 1px solid #f1f1f1;
+  box-shadow:0px 0px 4px lightgray;
+  border-radius: 10px;
+  position: relative;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+.flip-card-front {
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  padding: 10px;
+
+}
+
+.flip-card-back {
+  background-color: #236BAE;
+  color: white;
+  transform: rotateY(180deg);
+  border-radius: 10px;
+  padding: 10px;
+}
+input{
+  text-align: center;
+}
+.card-offer{
+  position: absolute;
+  background: #D7006C;
+  left: 0px;
+  top: 0px;
+  color: white;
+  padding: 0px 12px;
+  border-radius: 12px 12px 12px 0px;
+}
+@media only screen and (max-width:1024px){
+  .flip-card{
+    width: 100% !important;
+  }
+}
+

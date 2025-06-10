@@ -1,0 +1,25 @@
+<div class="menulaoder">
+    <div class="middle-content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+            <div class="card text-center text-white">
+             <div class="title text-center">
+              <h1 class="text-white">Please Provide Feedback</h1>
+             </div>
+              <form>
+                <label>Rating</label>
+                <app-star-rating [rating]="userRating" (ratingUpdated)="onRatingUpdated($event)"></app-star-rating>
+                <label>Description</label>
+                <textarea row="5" cols="5" class="w-100" placeholder="Description"></textarea>
+              </form>
+             <div class="text-center">
+              <button class="submitbtn" (click)="goToThankyou()">Submit</button>
+             </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>

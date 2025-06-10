@@ -1,0 +1,116 @@
+/* Main Container */
+.ordercard {
+  height: calc(88vh - 10px);
+  border-radius: 0.75rem;
+  box-shadow: 0 0 4px #c8c8c8;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Header */
+.ordersHeading {
+  padding: 20px;
+  color: #236BAE;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+/* Scrollable Content Area */
+.newinner {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-bottom: 11rem; /* Space for paymentdetails */
+}
+
+/* Order Items */
+.innerCard {
+  height: 8.6rem;
+  padding: 0.7rem 1rem 0.7rem 0.7rem;
+  background-color: #FAFAFA;
+  
+  &:nth-child(odd) {
+    background-color: white;
+  }
+}
+
+.dishName {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.dishDescription {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.numbercount {
+  margin-left: 40%;
+  width: 80px;
+  height: 30px;
+  border-radius: 20px;
+  background-color: #D5D5D5;
+}
+
+.dishPrice {
+  font-weight: 600;
+  text-align: right;
+  margin-right: 1rem;
+}
+
+/* Payment Footer */
+.paymentdetails {
+  position: sticky;
+  bottom: 0;
+  height: 11rem;
+  width: 100%;
+  background-color: #f8f7f7;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.subtotal, .serviceCharge {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+}
+
+.serviceCharge {
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed #727272;
+}
+
+.paynowBtn {
+  width: calc(100% + 3rem);
+  margin-left: -1.5rem;
+  border-bottom-left-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+  background-color: #236BAE;
+  color: white;
+  position: absolute;
+  bottom: 0;
+}
+
+/* Empty State */
+.previewText {
+  text-align: center;
+  font-size: large;
+  font-weight: 600;
+  color: #236BAE;
+}
+
+/* Buttons */
+.minubtn {
+  cursor: pointer;
+  border: none !important;
+  background: transparent !important;
+}

@@ -1,0 +1,317 @@
+<div class="col-md-12 d-flex container-fluid w-100 h-100">
+  <div class="col-md-12 p-0">
+    <div class="ordercard">
+      <p *ngIf="tokenFlag" class="ordersHeading">
+        {{ billingHeading }}
+      </p>
+      
+      <!-- Scrollable Order Items -->
+      <div class="newinner">
+        <div *ngIf="KartItems.length <= 0" class="previewText mt-5">
+          Please place your food order.
+        </div>
+        
+        <div class="innerCard" *ngFor="let items of KartItems; let i = index">
+          <div>
+            <div class="d-flex justify-content-between mr-1">
+              <p class="dishName">{{items.name}}</p>
+              <div *ngIf="!showCount">
+                <button class="minubtn btn p-0" (click)="delete(i,items)">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+            <p class="dishDescription">{{items.description}}</p>
+          </div>
+          
+          <div *ngIf="!showCount" class="numbercount">
+            <div class="d-flex justify-content-around">
+              <button class="minubtn btn p-0" (click)="minus(i,items)">
+                <i class="fa fa-minus mt-2" aria-hidden="true"></i>
+              </button>
+              <div class="mt-1">{{items.count}}</div>
+              <button class="minubtn btn p-0" (click)="plus(i,items)">
+                <i class="fa fa-plus mt-2" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+          
+          <div class="dishPrice" [ngClass]="!showCount?'mt-0':'mt-3'"> 
+            ₹ {{items.price * items.count}}
+          </div>
+        </div>
+      </div>
+      
+      <!-- Fixed Payment Footer -->
+      <div class="paymentdetails">
+        <div class="subtotal" *ngIf="KartItems.length > 0">
+          <p>Sub Total</p>
+          <p>{{addTotal}}</p>
+        </div>
+        <div class="serviceCharge" *ngIf="KartItems.length > 0">
+          <p>Service Charges</p>
+          <p>₹ {{serviceCharge}}</p>
+        </div>
+        <div class="subtotal mt-4" *ngIf="KartItems.length > 0">
+          <p>Total Payables</p>
+          <p>₹ {{addTotal + serviceCharge}}</p>
+        </div>
+        
+        <button *ngIf="KartItems.length > 0" 
+                (click)="!showCount ? Proceed() : paynow()" 
+                class="paynowBtn btn">
+          {{showpaynow}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="col-md-12 d-flex container-fluid w-100 h-100">
+    <div class="col-md-12">
+        <div class="card ordercard mt-2">
+  
+         <p *ngIf="tokenFlag" class="ordersHeading">
+            {{ billingHeading }}
+         </p>
+         <div class="newinner">
+            <div *ngIf="KartItems.length <= 0">
+                <div class="previewText mt-5">
+                    Please place your food order.
+                </div>
+            </div>
+         <div class="innerCard " *ngFor="let items of KartItems, let i = index">
+        <div >
+            <div class="d-flex justify-content-between mr-1">
+            <p class="dishName ">
+                {{items.name}}
+             </p>
+             <div *ngIf="!showCount">
+                <button class="minubtn btn p-0 " (click)="delete(i,items)">
+                    <i  class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+            </div>
+            </div>
+             <p class="dishDescription">
+                {{items.description}}
+             </p>
+        </div>
+         <div *ngIf="!showCount" class="numbercount">
+           <div class="d-flex justify-content-around" >
+            <div>
+                <button class="minubtn btn p-0" (click)="minus(i,items)">
+                    <i class="fa fa-minus mt-2" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="mt-1">{{items.count}}</div>
+            <div>
+                <button class="minubtn btn p-0" (click)="plus(i,items)">
+                    <i class="fa fa-plus mt-2" aria-hidden="true"></i>
+                </button>
+            </div>
+           </div>
+         </div>
+  
+         <div class="dishPrice"  [ngClass]="!showCount?'mt-0':'mt-3'"> ₹ {{items.price * items.count}}</div>
+  
+         </div>
+        </div>
+         <div class="paymentdetails" >
+            <div class="subtotal" *ngIf="KartItems.length > 0">
+                <p>Sub Total</p>
+                <p> {{addTotal}} </p>
+            </div>
+            <div class="serviceCharge" *ngIf="KartItems.length > 0">
+                <p> Service Charges</p>
+                <p> ₹ {{serviceCharge}} </p>
+            </div>
+            <div class="subtotal mt-4" *ngIf="KartItems.length > 0">
+                <p> Total Payables</p>
+                <p> ₹ {{addTotal + serviceCharge}}</p>
+            </div>
+  
+            <button *ngIf="KartItems.length > 0" (click)="!showCount ? Proceed() : paynow()" class="paynowBtn btn"> {{showpaynow}} </button>
+         </div>
+        </div>
+    </div>
+  </div>
+   -->
+  
+
+<!-- <div class="col-md-12 d-flex container-fluid w-100 h-100">
+    <div class="col-md-12">
+        <div class="card ordercard mt-2">
+            <p *ngIf="tokenFlag" class="ordersHeading">
+                {{ billingHeading }}
+            </p>
+            <div class="newinner">
+                <div *ngIf="KartItems.length <= 0">
+                    <div class="previewText mt-5">
+                        Please place your food order.
+                    </div>
+                </div>
+                <div class="innerCard" *ngFor="let items of KartItems,let i =index">
+                    <div>
+                        <div class="d-flex justify-content-betwee mr-1">
+                            <p class="dishName">
+                                {{items.name}}
+                            </p>
+                            <div *ngIf="!showCount">
+                                <button class="minubtn btn p-0">
+                                    <i class="fa fa-trash-o" (click)="delete(i,items)" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <p class="dishDescription">
+                            {{items.description}}
+                        </p>
+                    </div>
+                    <div *ngIf="!showCount" class="numbercount">
+                        <div class="d-flex justify-content-around">
+                            <div>
+                                <button class="minubtn btn p-0">
+                                    <i class="fa fa-minus mt-2" aria-hidden="true" (click)="minus(i,items)"></i>
+                                </button>
+                            </div>
+                            <div class="mt-1">{{items.count}}</div>
+                            <div>
+                                <button class="minubtn btn p-0">
+                                    <i class="fa fa-plus mt-2" aria-hidden="true" (click)="plus(i,items)"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dishPrice" [ngClass]="!showCount?'mt-0':'mt-3'">
+                        {{items.price * items.count}}
+                    </div>
+                </div>
+            </div>
+            <div class="paymentdetails">
+                <div class="subtotal" *ngIf="KartItems.length > 0">
+                    <p>Sub Total</p>
+                    <p>{{addTotal}}</p>
+                </div>
+                <div class="serviceCharge" *ngIf="KartItems.length > 0">
+                    <p>Service Charges</p>
+                    <p> {{serviceCharge}}</p>
+                </div>
+                <div class="subtotal mt-4" *ngIf="KartItems.length>0">
+                    <p>Total Payables</p>
+                    <p>{{addTotal + serviceCharge}}</p>
+                </div>
+                <button *ngIf="KartItems.length > 0" (click)="!showCount ? Proceed():paynow()"
+                    class="paynowBtn btn">{{showpaynow}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+ -->
+
+<!-- <div class="container-fluid d-flex">
+    <div class="col-8">
+        <header class="row justify-content-center text-center p-3 ">
+            <nav>
+                <ul class="ul-items justify-content-center text-center p-3">
+                    <li class="list-inline-item me-5">Starters</li>
+                    <li class="list-inline-item me-5">Main Course</li>
+                    <li class="list-inline-item me-5">Deserts</li>
+                    <li class="list-inline-item me-5">Beverages</li>
+                </ul>
+            </nav>
+        </header>
+        <hr>
+        <div class="row d-flex">
+            <aside class="col-3 aside-course justify-content-center text-center">
+                <img src="/assets/dish.png">
+                <p>Veg</p>
+                <img src="/assets/chicken-leg.png">
+                <p>Non-Veg</p>
+            </aside>
+            <div class="col-9 items">
+                <div class="row">
+                    <div class="flip-card col-12 col-sm-6 col-md-4 mt-3">
+                        <div class="flip-card-inner rounded shadow">
+                            <div class="flip-card-front">
+                                <img class="img-fluid w-100 h-50" src="/assets/chicken-leg.png" alt="samosa">
+                                <div class="d-flex flex-column justify-content-center align-items=center p-3">
+                                    <p>This is an item about chicken</p>
+                                    <p class="text-primary">13.00</p>
+                                </div>
+                            </div>
+                            <div class="flip-card-back rounded shadow p-3">
+                                <div class="input-group">
+                                    <span class="input-group-text" (click)="orderDecrement1()">-</span>
+                                    <input type="number" class="form-control text-center"  name="count" [(ngModel)]="count"/>
+                                    <span class="input-group-text" (click)="orderIncrement1()">+</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center align-items-center p-3">
+                                    <p>Chicken</p>
+                                    <p>This is very tasty chicken</p>
+                                    <p>100</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card col-12 col-sm-6 col-md-4 mt-3">
+                        <div class="flip-card-inner rounded shadow">
+                            <div class="flip-card-front">
+                                <img class="img-fluid w-100 h-50" src="/assets/chicken-leg.png" alt="samosa">
+                                <div class="d-flex flex-column justify-content-center align-items=center p-3">
+                                    <p>This is an item about chicken biryani</p>
+                                    <p class="text-primary">100.00</p>
+                                </div>
+                            </div>
+                            <div class="flip-card-back rounded shadow p-3">
+                                <div class="input-group">
+                                    <span class="input-group-text" (click)="orderDecrement2()">-</span>
+                                    <input type="number" class="form-control text-center" name="count2" [(ngModel)]="count2"/>
+                                    <span class="input-group-text" (click)="orderIncrement2()">+</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center align-items-center p-3">
+                                    <p>Chicken Biryani</p>
+                                    <p>This is very tasty chicken</p>
+                                    <p>100</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="order" class="col-3 mx-5">
+        <h3 class="text-primary">Preview Order</h3>
+        
+        <p class="text-primary" *ngIf="totalPrice == 0">Please place your order</p>
+        <div *ngIf="price1>0">
+            <h4>Chicken</h4>
+            <p>This is a tasty chicken</p>
+            <div class="d-flex">
+                <div class="order-count">
+                    <span (click)="orderDecrement1()">-</span>
+                    <small>{{count1}}</small>
+                    <span (click)="orderIncrement1()">+</span>
+                </div>
+                <small>{{price1}}</small>
+            </div>
+        </div>
+        <div *ngIf="price2>0">
+            <h4>Chicken Biryani</h4>
+            <p>This is a tasty biryani</p>
+            <div class="d-flex">
+                <div class="order-count p-2">
+                    <span (click)="orderDecrement2()">-</span>
+                    <small>{{count2}}</small>
+                    <span (click)="orderIncrement2()">+</span>
+                </div>
+                <small class="justify-content-end">{{price2}}</small>
+            </div>
+        </div>
+        <h5 class="mb-5">Sub Total {{totalPrice}}</h5>
+        <h5>Service Charges: {{totalPrice == 0 ? 0 : 50}}</h5>
+        <hr>
+        <h5 *ngIf="totalPrice>0">Total Payables: {{totalPrice + 50}}</h5>
+        <button class="btn btn-block btn-primary text-white">Proceed</button>
+    </div>
+
+</div> -->

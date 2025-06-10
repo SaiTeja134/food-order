@@ -1,0 +1,342 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8 mt-2">
+      <div class="card order-card" style="width: 100%">
+        <div class="card-body">
+          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                aria-selected="true">
+                <div class="btncontent">
+                  <img style="width: 50px;height: 50px;" src="../../../assets/starters_icon.png" alt="" />&nbsp;Starters
+                </div>
+                <div class="activdeline"></div>
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                aria-selected="false">
+                <div class="btncontent">
+                  <img style="width: 50px;height: 50px;" src="../../../assets/main_course_icon.png" alt="" />&nbsp;Main Course
+                </div>
+                <div class="activdeline"></div>
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
+                aria-selected="false">
+                <div>
+                  <img style="width: 50px;height: 50px;" src="../../../assets/desserts-icon.png" alt="" />&nbsp;Deserts
+                </div>
+                <div class="activdeline"></div>
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled"
+                aria-selected="false">
+                <div class="btncontent">
+                  <img style="width: 50px;height: 50px;" src="../../../assets/beverages-icon.png" alt="" />&nbsp;Beverages
+                </div>
+                <div class="activdeline"></div>
+              </button>
+            </li>
+          </ul>
+          
+          <div class="tab-content" id="pills-tabContent">
+            <!-- Starters Tab -->
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+              aria-labelledby="pills-home-tab" tabindex="0">
+              <div class="container-fluid">
+                <div class="row mt-4">
+                  <div class="col-md-2 category-col">
+                    <div class="row">
+                      <div class="col-md-11" (click)="handleSubCategory('veg', 'starter')">
+                        <div class="row justify-content-center">
+                          <img src="../../../assets/veg-icon.png" alt="" class="category-img"
+                            [class.isSelected]="isSelectedVeg" />
+                        </div>
+                        <div class="row">
+                          <h3 class="category-title">Veg</h3>
+                        </div>
+                      </div>
+                      <div class="col-md-11" (click)="handleSubCategory('nonveg', 'starter')">
+                        <div class="row justify-content-center">
+                          <img src="../../../assets/non_veg_icon.png" alt="" class="category-img"
+                            [class.isSelected]="!isSelectedVeg" />
+                        </div>
+                        <div class="row">
+                          <h3 class="category-title">Non-Veg</h3>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-10 itemListDiv">
+                    <form [formGroup]="starterVegForm">
+                      <div class="row mb-3">
+                        <div class="col-md-6 col-lg-4 mt-3"
+                          [formArrayName]="isSelectedVeg ? 'items' : 'itemNonveg'" 
+                          *ngFor="let item of isSelectedVeg ? starterVeg : starterNonVeg; let i = index">
+                          <div class="flip-card" style="width: 75%" [formGroupName]="i">
+                            <div class="flip-card-inner">
+                              <div class="flip-card-front">
+                                <div class="card-offer">
+                                  <h3 class="mb-0">20% off</h3>
+                                </div>
+                                <img [src]="item.imgPath" class="items-img mt-4" />
+                                <div class="col-md-12 text-center">
+                                  <h3 class="m-0 fw-bold">{{ item.name }}</h3>
+                                </div>
+                                <div class="col-md-12">
+                                  <p class="item-discription m-0">{{ item.description }}</p>
+                                  <p class="item-price m-0">₹{{ item.price }}</p>
+                                </div>
+                              </div>
+                              <div class="flip-card-back">
+                                <div class="item-count">
+                                  <div class="input-group mb-3">
+                                    <span class="input-group-text cursor-pointer"
+                                      (click)="handleItemMinus(isSelectedVeg ? 'starter-veg' : 'starter-nonveg', i, item)">
+                                      -
+                                    </span>
+                                    <input type="text" class="form-control input-text-field"
+                                      [id]="'starter' + i" readonly formControlName="foodCount" />
+                                    <span class="input-group-text cursor-pointer"
+                                      (click)="handleItemAdd(isSelectedVeg ? 'starter-veg' : 'starter-nonveg', i, item)">
+                                      +
+                                    </span>
+                                  </div>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                  <h3 class="m-0 fw-bold">{{ item.name }}</h3>
+                                </div>
+                                <div class="col-md-12">
+                                  <p class="item-discription m-0">{{ item.description }}</p>
+                                  <p class="item-price m-0 text-white">₹{{ item.price }}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Main Course Tab -->
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+              aria-labelledby="pills-profile-tab" tabindex="0">
+              <div class="container-fluid">
+                <div class="row mt-4">
+                  <div class="col-md-2 category-col">
+                    <div class="row">
+                      <div class="col-md-11" (click)="handleSubCategory('veg', 'main')">
+                        <div class="row justify-content-center">
+                          <img src="../../../assets/veg-icon.png" alt="" class="category-img"
+                            [class.isSelected]="isSelected" />
+                        </div>
+                        <div class="row">
+                          <h3 class="category-title">Veg</h3>
+                        </div>
+                      </div>
+                      <div class="col-md-11" (click)="handleSubCategory('nonveg', 'main')">
+                        <div class="row justify-content-center">
+                          <img src="../../../assets/non_veg_icon.png" alt="" class="category-img"
+                            [class.isSelected]="!isSelected" />
+                        </div>
+                        <div class="row">
+                          <h3 class="category-title">Non-Veg</h3>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-10 itemListDiv">
+                    <form [formGroup]="mainCourseVegForm">
+                      <div class="row mb-3">
+                        <div class="col-md-4 mt-3"
+                          [formArrayName]="isSelected ? 'items' : 'itemNonveg'"
+                          *ngFor="let item of isSelected ? mainCourseVeg : mainCourseNonVeg; let i = index">
+                          <div class="flip-card" style="width: 75%" [formGroupName]="i">
+                            <div class="flip-card-inner">
+                              <div class="flip-card-front">
+                                <div class="card-offer">
+                                  <h3 class="mb-0">20% off</h3>
+                                </div>
+                                <img [src]="item.imgPath" class="items-img mt-4" />
+                                <div class="col-md-12 text-center">
+                                  <h3 class="m-0 fw-bold">{{ item.name }}</h3>
+                                </div>
+                                <div class="col-md-12">
+                                  <p class="item-discription m-0">{{ item.description }}</p>
+                                  <p class="item-price m-0">₹{{ item.price }}</p>
+                                </div>
+                              </div>
+                              <div class="flip-card-back">
+                                <div class="item-count">
+                                  <div class="input-group mb-3">
+                                    <span class="input-group-text cursor-pointer"
+                                      (click)="handleItemMinus(isSelected ? 'main-veg' : 'main-nonveg', i, item)">
+                                      -
+                                    </span>
+                                    <input type="text" class="form-control input-text-field"
+                                      [id]="'main' + i" readonly formControlName="foodCount" />
+                                    <span class="input-group-text cursor-pointer"
+                                      (click)="handleItemAdd(isSelected ? 'main-veg' : 'main-nonveg', i, item)">
+                                      +
+                                    </span>
+                                  </div>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                  <h3 class="m-0 fw-bold">{{ item.name }}</h3>
+                                </div>
+                                <div class="col-md-12">
+                                  <p class="item-discription m-0">{{ item.description }}</p>
+                                  <p class="item-price m-0 text-white">₹{{ item.price }}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Deserts Tab -->
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel"
+              aria-labelledby="pills-contact-tab" tabindex="0">
+              <div class="container-fluid">
+                <div class="row mt-4">
+                  <div class="col-md-12 itemListDiv pe-0">
+                    <form [formGroup]="DesertVegForm">
+                      <div class="row mb-3 ms-2">
+                        <div class="col-md-4 mt-3" formArrayName="items"
+                          *ngFor="let item of DesertsVeg; let i = index">
+                          <div class="flip-card" style="width: 75%" [formGroupName]="i">
+                            <div class="flip-card-inner">
+                              <div class="flip-card-front">
+                                <div class="card-offer">
+                                  <h3 class="mb-0">20% off</h3>
+                                </div>
+                                <img [src]="item.imgPath" class="items-img mt-4" />
+                                <div class="col-md-12 text-center">
+                                  <h3 class="m-0 fw-bold">{{ item.name }}</h3>
+                                </div>
+                                <div class="col-md-12">
+                                  <p class="item-discription m-0">{{ item.description }}</p>
+                                  <p class="item-price m-0">₹{{ item.price }}</p>
+                                </div>
+                              </div>
+                              <div class="flip-card-back">
+                                <div class="item-count">
+                                  <div class="input-group mb-3">
+                                    <span class="input-group-text cursor-pointer"
+                                      (click)="handleItemMinus('desert', i, item)">
+                                      -
+                                    </span>
+                                    <input type="text" class="form-control input-text-field"
+                                      [id]="'desert' + i" readonly formControlName="foodCount" />
+                                    <span class="input-group-text cursor-pointer"
+                                      (click)="handleItemAdd('desert', i, item)">
+                                      +
+                                    </span>
+                                  </div>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                  <h3 class="m-0 fw-bold">{{ item.name }}</h3>
+                                </div>
+                                <div class="col-md-12">
+                                  <p class="item-discription m-0">{{ item.description }}</p>
+                                  <p class="item-price m-0 text-white">₹{{ item.price }}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Beverages Tab -->
+            <div class="tab-pane fade" id="pills-disabled" role="tabpanel"
+              aria-labelledby="pills-disabled-tab" tabindex="0">
+              <div class="container-fluid">
+                <div class="row mt-4">
+                  <div class="col-md-12 itemListDiv pe-0">
+                    <form [formGroup]="brevegrageForm">
+                      <div class="row mb-3 ms-2">
+                        <div class="col-md-4 mt-3" formArrayName="items"
+                          *ngFor="let item of BreverageVeg; let i = index">
+                          <div class="flip-card" style="width: 75%" [formGroupName]="i">
+                            <div class="flip-card-inner">
+                              <div class="flip-card-front">
+                                <div class="card-offer">
+                                  <h3 class="mb-0">20% off</h3>
+                                </div>
+                                <img [src]="item.imgPath" class="items-img mt-4" />
+                                <div class="col-md-12 text-center">
+                                  <h3 class="m-0 fw-bold">{{ item.name }}</h3>
+                                </div>
+                                <div class="col-md-12">
+                                  <p class="item-discription m-0">{{ item.description }}</p>
+                                  <p class="item-price m-0">₹{{ item.price }}</p>
+                                </div>
+                              </div>
+                              <div class="flip-card-back">
+                                <div class="item-count">
+                                  <div class="input-group mb-3">
+                                    <span class="input-group-text cursor-pointer"
+                                      (click)="handleItemMinus('breverage', i, item)">
+                                      -
+                                    </span>
+                                    <input type="text" class="form-control input-text-field"
+                                      [id]="'breverage' + i" readonly formControlName="foodCount" />
+                                    <span class="input-group-text cursor-pointer"
+                                      (click)="handleItemAdd('breverage', i, item)">
+                                      +
+                                    </span>
+                                  </div>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                  <h3 class="m-0 fw-bold">{{ item.name }}</h3>
+                                </div>
+                                <div class="col-md-12">
+                                  <p class="item-discription m-0">{{ item.description }}</p>
+                                  <p class="item-price m-0 text-white">₹{{ item.price }}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <app-order-billing 
+        [billingHeading]="orderItemHeading" 
+        [KartItems]="KartItems" 
+        [addTotal]="addTotal"
+        (deleteitem)="deleteitem($event)" 
+        (addItem)="Additem($event)"
+        (minusItem)="minusitem($event)"> 
+      </app-order-billing>
+    </div>
+  </div>
+</div>

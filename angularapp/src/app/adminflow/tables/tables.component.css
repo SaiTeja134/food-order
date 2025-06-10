@@ -1,0 +1,230 @@
+/* General Styles */
+.title {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.card {
+  border: none;
+  box-shadow: 0 0 20px rgba(0,0,0,0.08);
+  border-radius: 12px;
+  height: calc(100vh - 135px);
+  overflow-y: auto;
+}
+
+.card::-webkit-scrollbar {
+  width: 8px;
+}
+
+.card::-webkit-scrollbar-thumb {
+  background-color: #236BAE;
+  border-radius: 10px;
+}
+
+.card::-webkit-scrollbar-track {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+}
+
+/* Table Card Styles */
+.table-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  border: 1px solid #e0e0e0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.table-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.table-header {
+  padding: 15px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.table-number {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table-number h3 {
+  color: #2c3e50;
+  font-size: 1.2rem;
+}
+
+.capacity-badge {
+  background: #236BAE;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+}
+
+.table-image {
+  padding: 15px;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.table-status {
+  padding: 15px;
+  background: #f8f9fa;
+  border-top: 1px solid #e0e0e0;
+}
+
+.status-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.status-item:last-child {
+  margin-bottom: 0;
+}
+
+.status-item label {
+  color: #495057;
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+.table-footer {
+  padding: 10px 15px;
+  background: #f1f3f5;
+  border-top: 1px solid #e0e0e0;
+  text-align: center;
+}
+
+.status-indicator {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin: 0 2px;
+}
+
+/* Status Colors */
+.table-card.booked {
+  border-left: 4px solid #ff6b6b;
+}
+
+.table-card.alloted {
+  border-left: 4px solid #fcc419;
+}
+
+.table-card.served {
+  border-left: 4px solid #51cf66;
+}
+
+.status-indicator {
+  background: #236BAE;
+  color: white;
+}
+
+.table-card.booked .status-indicator {
+  background: #ff6b6b;
+}
+
+.table-card.alloted .status-indicator {
+  background: #fcc419;
+}
+
+.table-card.served .status-indicator {
+  background: #51cf66;
+}
+
+/* Toggle Switch Styles (Improved) */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  transition: .4s;
+  border: 2px solid #adb5bd;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: #adb5bd;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  border-color: #236BAE;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+  background-color: #236BAE;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Button Styles */
+.addTableBtn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+/* Responsive Grid */
+@media (max-width: 576px) {
+  .row-cols-sm-2 > * {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}

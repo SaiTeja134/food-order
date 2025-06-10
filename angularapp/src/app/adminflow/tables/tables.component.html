@@ -1,0 +1,106 @@
+<div class="tables">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="title d-flex align-items-center justify-content-between p-3">
+                <h2 class="fw-bold mb-0">Table Management</h2>
+                <div class="text-center">
+                    <button class="btn btn-primary addTableBtn" data-bs-toggle="modal" data-bs-target="#addTableModal">
+                        <i class="fa fa-plus me-2" aria-hidden="true"></i> Add New Table
+                    </button>
+                </div>
+            </div>
+            <div class="p-4">
+                <form [formGroup]="tableForm">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
+                        <div class="col" formArrayName="table" *ngFor="let item of tables.controls;let i = index">
+                            <div class="table-card" [formGroupName]="i" [class.booked]="item.get('booked')?.value"
+                                [class.alloted]="item.get('alloted')?.value" [class.served]="item.get('served')?.value">
+                                <div class="table-header">
+                                    <div class="table-number">
+                                        <h3 class="fw-bold mb-0">Table #{{item.get('tableNo')?.value}}</h3>
+                                        <span class="badge capacity-badge">{{item.get('capacity')?.value}} seats</span>
+                                    </div>
+                                </div>
+                                <div class="table-image">
+                                    <img src="../../../assets/restaurant-table.jpg"
+                                        alt="Table {{item.get('tableNo')?.value}}">
+                                </div>
+                                <div class="table-status">
+                                    <div class="status-item">
+                                        <label>Available</label>
+                                        <div class="toggle">
+                                            <label class="switch">
+                                                <input type="checkbox" formControlName="booked"
+                                                    (change)="editTables(i)">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="status-item">
+                                        <label>Alloted</label>
+                                        <div class="toggle">
+                                            <label class="switch">
+                                                <input type="checkbox" formControlName="alloted"
+                                                    (change)="editTables(i)">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="status-item">
+                                        <label>Served</label>
+                                        <div class="toggle">
+                                            <label class="switch">
+                                                <input type="checkbox" formControlName="served"
+                                                    (change)="editTables(i)">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-footer">
+                                    <span class="status-indicator" *ngIf="item.get('booked')?.value">Booked</span>
+                                    <span class="status-indicator" *ngIf="item.get('alloted')?.value">Alloted</span>
+                                    <span class="status-indicator" *ngIf="item.get('served')?.value">Served</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal remains the same -->
+<div class="modal fade" id="addTableModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fw-bold fs-5 mb-0" id="exampleModalLabel">Add New Table</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-3">
+                <div class="form">
+                    <form [formGroup]="addTabForm">
+                        <div class="form-group mb-3">
+                            <label for="tableNo" class="form-label">TableNo:</label>
+                            <input type="number" class="form-control" formControlName="tableNo">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="capacity" class="form-label">Capacity</label>
+                            <select name="" id="" class="form-control" formControlName="capacity">
+                                <option value="2" selected>2</option>
+                                <option value="4">4</option>
+                                <option value="6">6</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-block btn-primary" (click)="handleAddTable()">
+                            Add Table
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
